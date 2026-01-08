@@ -8,6 +8,7 @@ public class BulletControl : MonoBehaviour
     public float speed;
     public Vector2 dir;
     public float liveTime;
+    public float hurt;
     Rigidbody2D rb;
     void Start()
     {

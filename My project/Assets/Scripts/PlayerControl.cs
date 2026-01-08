@@ -1,4 +1,4 @@
-using Spine.Unity;
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +9,7 @@ public class PlayerControl : MonoBehaviour
 
     Vector2 dir = Vector2.zero;
     Rigidbody2D rb;
+    float timeGap = 0;
 
     [Tooltip("移动速度")]
     public float moveSpeed = 0.5f;
@@ -46,24 +47,49 @@ public class PlayerControl : MonoBehaviour
         // 这里需要根据近战或者远程修改攻击
         if(Input.GetMouseButtonDown(0))
         {
-            if (BaseSetting.attackMethod == 0)
+            if (timeGap >= 0.3f)
             {
-                // 这里需要播放近战动画
+                if (BaseSetting.attackMethod == 0)
+                {
+                    // 这里需要播放近战动画
+                }
+                else
+                {
+                    // 这里为远程攻击
+                    Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                    Vector2 mouseDir = (mousePos - rb.position).normalized;
+                    GameObject obj = GameObject.Instantiate(bullet, this.transform);
+                    BulletControl src = obj.GetComponent<BulletControl>();
+                    src.dir = mouseDir;
+                    src.speed = 0.5f;
+                    src.liveTime = 1;
+                    src.hurt = 1;
+                }
+                timeGap = 0;
             }
-            else
-            {
-                // 这里为远程攻击
-                Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                Vector2 mouseDir = (mousePos - rb.position).normalized;
-                GameObject obj = GameObject.Instantiate(bullet, this.transform);
-                BulletControl src = obj.GetComponent<BulletControl>();
-                src.dir = mouseDir;
-                src.speed = 0.5f;
-                src.liveTime = 1;
 
-
-            }
         }
+        else if (!Input.GetMouseButton(0))
+        {
+            timeGap += Time.deltaTime;
+            if(timeGap >= 0.5) { timeGap = 0.5f; }
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Monster"))
+        {
+            StartCoroutine(GetHurt());
+        }
+    }
+
+    IEnumerator GetHurt()
+    {
+        SpriteRenderer sr = GetComponent<SpriteRenderer>();
+        sr.color = Color.red;
+        yield return new WaitForSeconds(0.15f);
+        sr.color = Color.white;
     }
 
 }
