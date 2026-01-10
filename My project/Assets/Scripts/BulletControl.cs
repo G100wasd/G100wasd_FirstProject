@@ -5,9 +5,9 @@ using UnityEngine;
 public class BulletControl : MonoBehaviour
 {
 
-    public float speed;
     public Vector2 dir;
-    public float liveTime;
+    public float speed = 0.5f;
+    public float liveTime = 1.0f;
     public float hurt;
     Rigidbody2D rb;
     void Start()

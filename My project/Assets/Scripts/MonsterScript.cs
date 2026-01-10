@@ -36,7 +36,10 @@ public class MonsterScript : MonoBehaviour
         else if (collision.CompareTag("Bullet"))
         {
             life -= collision.gameObject.GetComponent<BulletControl>().hurt;
-            if (life <= 0) { GameObject.Destroy(this.gameObject); }
+            if (life <= 0) {
+                BaseSetting.exp += 1;
+                GameObject.Destroy(this.gameObject); 
+            }
             else { StartCoroutine(GetHurt()); }
 
         }

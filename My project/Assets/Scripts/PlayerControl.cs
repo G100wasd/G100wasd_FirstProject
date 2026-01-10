@@ -12,9 +12,11 @@ public class PlayerControl : MonoBehaviour
     float timeGap = 0;
 
     [Tooltip("移动速度")]
-    public float moveSpeed = 0.5f;
+    public float moveSpeed = 0.1f;
     [Tooltip("子弹")]
     public GameObject bullet;
+    public float bulletSpeed = 0.5f;
+    public float bulletLiveTime = 0.5f;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -26,6 +28,7 @@ public class PlayerControl : MonoBehaviour
     {
         Key();
         Attack();
+        if(Input.GetKeyDown(KeyCode.Tab)) { Debug.Log(BaseSetting.exp); }
     }
     private void FixedUpdate()
     {
@@ -61,8 +64,8 @@ public class PlayerControl : MonoBehaviour
                     GameObject obj = GameObject.Instantiate(bullet, this.transform);
                     BulletControl src = obj.GetComponent<BulletControl>();
                     src.dir = mouseDir;
-                    src.speed = 0.5f;
-                    src.liveTime = 1;
+                    src.speed = bulletSpeed;
+                    src.liveTime = bulletLiveTime;
                     src.hurt = 1;
                 }
                 timeGap = 0;
@@ -76,6 +79,13 @@ public class PlayerControl : MonoBehaviour
         }
     }
 
+    IEnumerator GetHurt()
+    {
+        SpriteRenderer sr = GetComponent<SpriteRenderer>();
+        sr.color = Color.red;
+        yield return new WaitForSeconds(0.15f);
+        sr.color = Color.white;
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Monster"))
@@ -84,12 +94,6 @@ public class PlayerControl : MonoBehaviour
         }
     }
 
-    IEnumerator GetHurt()
-    {
-        SpriteRenderer sr = GetComponent<SpriteRenderer>();
-        sr.color = Color.red;
-        yield return new WaitForSeconds(0.15f);
-        sr.color = Color.white;
-    }
+
 
 }
