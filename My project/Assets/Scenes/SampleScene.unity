@@ -182,6 +182,7 @@ MonoBehaviour:
   - {fileID: 1750444117}
   - {fileID: 1351602320}
   player: {fileID: 1844368705}
+  monsterCreat: {fileID: 1060450083}
 --- !u!114 &207304107
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -452,8 +453,21 @@ MonoBehaviour:
   monsterName:
   - Silime
   monsterList:
-  - moveSpeed: 0.05
-    monsterPerhab: {fileID: 8142974976054610021, guid: bebf70eea711e50498c6347cab9162b5, type: 3}
+  - monsterPerhab: {fileID: 8142974976054610021, guid: bebf70eea711e50498c6347cab9162b5, type: 3}
+    moveSpeed: 0.05
+    life: 2
+    probability: 0
+    weight: 0
+  - monsterPerhab: {fileID: 8142974976054610021, guid: a274e74dd1d9349408e1715b9ceb0b0d, type: 3}
+    moveSpeed: 0.1
+    life: 3
+    probability: 0
+    weight: 0
+  - monsterPerhab: {fileID: 8142974976054610021, guid: cbbadab24cc90a24194c3799816847d3, type: 3}
+    moveSpeed: 0.4
+    life: 1
+    probability: 0
+    weight: 0
 --- !u!4 &1060450084
 Transform:
   m_ObjectHideFlags: 0
@@ -503,7 +517,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -105.1}
+  m_AnchoredPosition: {x: 0, y: 4}
   m_SizeDelta: {x: 80, y: 26.797}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1128647071
@@ -758,7 +772,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -105.1}
+  m_AnchoredPosition: {x: 0, y: 3.999977}
   m_SizeDelta: {x: 80, y: 26.797}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1491740963
@@ -1134,7 +1148,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -105.1}
+  m_AnchoredPosition: {x: 0, y: 3.999977}
   m_SizeDelta: {x: 80, y: 26.797}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1784190735

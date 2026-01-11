@@ -13,6 +13,7 @@ public class CardUI : MonoBehaviour
     public RectTransform mainCanva;
     public List<GameObject> buttons;
     public GameObject player;
+    public MonsterCreat monsterCreat;
     PlayerControl playerSrc;
 
     RectTransform tran;
@@ -65,6 +66,7 @@ public class CardUI : MonoBehaviour
             CardsInit();
             ChangeMenuShow();
             BaseSetting.exp = 0;
+            monsterCreat.ChangeProbability(BaseSetting.level);
         }
     }
 

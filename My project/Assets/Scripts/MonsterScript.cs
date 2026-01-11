@@ -14,7 +14,6 @@ public class MonsterScript : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
     void FixedUpdate()
     {
         float fix_t = Time.fixedDeltaTime;
